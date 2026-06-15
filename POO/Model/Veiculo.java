@@ -3,7 +3,7 @@ package POO.Model;
 public abstract class Veiculo {
     private String marca = "", modelo = "", placa = "", cor = "Cor Não Informada", combustivel = "Não Informado";
     private int ano = 1900, quilometragem = 0;
-    private double preco = 5000.00, potenciaMotor = 0.0;
+    private double preco = 0.00, potenciaMotor = 0.0;
     private boolean disponivel = true;
 
     @Override

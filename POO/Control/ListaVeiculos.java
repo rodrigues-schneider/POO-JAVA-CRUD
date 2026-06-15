@@ -73,7 +73,7 @@ public class ListaVeiculos {
                 anoOk = true;
             } else {
                 try {
-                    if (Integer.valueOf(anoInferior.trim()) == veiculo.getAno()) {
+                    if (Integer.valueOf(anoInferior.trim()) <= veiculo.getAno()) {
                         anoOk = true;
                     }
                 } catch (NumberFormatException e) {
@@ -86,7 +86,7 @@ public class ListaVeiculos {
                     precoOk = true;
                 } else {
                     try{
-                        if (Double.valueOf(precoSuperior.trim()) == veiculo.getPreco()){
+                        if (Double.valueOf(precoSuperior.trim()) >= veiculo.getPreco()){
                             precoOk = true;
                         }
                     } catch (NumberFormatException e) {

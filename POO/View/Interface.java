@@ -357,9 +357,11 @@ public final class Interface {
             if (anoInserido < 1920 || anoInserido > anoAtual){
                 System.out.print("          Ano Inválido!\nInsira um ANO entre 1920 e " + anoAtual + ": ");
             } else {
-                ano = anoAtual;
+                ano = anoInserido;
             }
+
         } while (ano == 0);
+        leitura.nextLine();
 
         veiculo.setMarca(atributos.get(0));
         veiculo.setModelo(atributos.get(1));
@@ -375,7 +377,7 @@ public final class Interface {
 
         if (VeiculosDAO.adicionar(Conexao.getURL(), veiculo)) {
             String texto = "Novo Veiculo Registrado!";
-            int espaco = (texto.length() - 98)/2;
+            int espaco = (98 - texto.length())/2;
             System.out.println("|" + "=".repeat(espaco) + texto + "=".repeat(espaco) + "|");
         }
 

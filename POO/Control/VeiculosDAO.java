@@ -344,8 +344,8 @@ WHERE placa = ?
 
         String instrucao = """
                         INSERT INTO %s
-                        (marca, modelo, placa, cor, combustivel, ano, quilometragem, preco, potenciaMotor, freioABS, %s, %s, %s)
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        (marca, modelo, placa, cor, combustivel, ano, quilometragem, preco, potenciaMotor, disponivel, freioABS, %s, %s, %s)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                         """.formatted(verificaTabela(veiculo), string1, string2, string3);
 
         try (Connection conexao = Conexao.abrirConexao(Conexao.getURL());

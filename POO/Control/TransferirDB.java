@@ -136,35 +136,54 @@ public final class TransferirDB {
 
         String instrucao = """
                         INSERT INTO %s
-                        (marca, modelo, placa, cor, combustivel, ano, quilometragem, preco, potenciaMotor, freioABS, %s, %s, %s)
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        (marca, modelo, placa, cor, combustivel, ano, quilometragem, preco, potenciaMotor, disponivel, freioABS, %s, %s, %s)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                         """.formatted(tabela, string1, string2, string3);
 
         try (Connection conexao = Conexao.abrirConexao(url);
              PreparedStatement comando = conexao.prepareStatement(instrucao)){
 
-            comando.setString(1, veiculo.getMarca());
-            comando.setString(2, veiculo.getModelo());
-            comando.setString(3, veiculo.getPlaca());
-            comando.setString(4, veiculo.getCor());
-            comando.setString(5, veiculo.getCombustivel());
-            comando.setInt(6, veiculo.getAno());
-            comando.setInt(7, veiculo.getQuilometragem());
-            comando.setDouble(8, veiculo.getPreco());
-            comando.setDouble(9, veiculo.getPotenciaMotor());
+            int i = 1;
+            comando.setString(i, veiculo.getMarca());
+            i++;
+            comando.setString(i, veiculo.getModelo());
+            i++;
+            comando.setString(i, veiculo.getPlaca());
+            i++;
+            comando.setString(i, veiculo.getCor());
+            i++;
+            comando.setString(i, veiculo.getCombustivel());
+            i++;
+            comando.setInt(i, veiculo.getAno());
+            i++;
+            comando.setInt(i, veiculo.getQuilometragem());
+            i++;
+            comando.setDouble(i, veiculo.getPreco());
+            i++;
+            comando.setDouble(i, veiculo.getPotenciaMotor());
+            i++;
+            comando.setBoolean(i, veiculo.isDisponivel());
+            i++;
+
 
             // VERIFICA O TIPO E FAZ O TIPE CASTING
             if (veiculo instanceof Carro carro) {
-                comando.setBoolean(10, carro.isFreioABS());
-                comando.setBoolean(11, carro.isArCondicionado());
-                comando.setBoolean(12, carro.isTravaEletrica());
-                comando.setBoolean(13, carro.isDirecaoEletrica());
+                comando.setBoolean(i, carro.isFreioABS());
+                i++;
+                comando.setBoolean(i, carro.isArCondicionado());
+                i++;
+                comando.setBoolean(i, carro.isTravaEletrica());
+                i++;
+                comando.setBoolean(i, carro.isDirecaoEletrica());
             }
             else if (veiculo instanceof Moto moto) {
-                comando.setBoolean(10, moto.isFreioABS());
-                comando.setBoolean(11, moto.isPartidaEletrica());
-                comando.setBoolean(12, moto.isBau());
-                comando.setBoolean(13, moto.isParabrisaElevado());
+                comando.setBoolean(i, moto.isFreioABS());
+                i++;
+                comando.setBoolean(i, moto.isPartidaEletrica());
+                i++;
+                comando.setBoolean(i, moto.isBau());
+                i++;
+                comando.setBoolean(i, moto.isParabrisaElevado());
             }
 
             int linhasAfetadas = comando.executeUpdate();
